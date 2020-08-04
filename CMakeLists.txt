@@ -9,9 +9,9 @@ find_package(catkin REQUIRED COMPONENTS
   joint_state_publisher
   kdl_parser
   robot_state_publisher
-  roscpp
-  rospy
-  tf
+  rclcpp
+  rclpy
+  tf2
   xacro
 )
 
