@@ -35,6 +35,8 @@
 #include <std_srvs/Empty.h>
 #include <costmap_2d/costmap_2d_ros.h>
 #include <std_srvs/Empty.h>
+#include "gazebo_ros_2Dmap_plugin/MapRequest.h"
+
 
 namespace gazebo {
 
@@ -78,7 +80,8 @@ class OccupancyMapFromWorld : public WorldPlugin {
   
   /*! \brief
   */
-  void CreateOccupancyMap();
+  void CreateOccupancyMap(double map_height, double map_resolution,
+                          double map_size_x, double map_size_y);
 
   static void cell2world(unsigned int cell_x, unsigned int cell_y,
                          double map_size_x, double map_size_y, double map_resolution,
@@ -96,8 +99,8 @@ class OccupancyMapFromWorld : public WorldPlugin {
                          unsigned int& cell_x, unsigned int& cell_y);
 
  private:
-  bool ServiceCallback(std_srvs::Empty::Request& req,
-                       std_srvs::Empty::Response& res);
+  bool ServiceCallback(gazebo_ros_2Dmap_plugin::MapRequest::Request& req,
+                       gazebo_ros_2Dmap_plugin::MapRequest::Response& res);
 
   physics::WorldPtr world_;
   ros::NodeHandle nh_;

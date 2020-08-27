@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   tf
   xacro
+  message_generation
 )
 
 add_definitions(-std=c++11)
@@ -20,12 +21,23 @@ add_definitions(-std=c++11)
 find_package(gazebo REQUIRED)
 link_directories(${GAZEBO_LIBRARY_DIRS})
 
+
+add_service_files(
+    FILES
+    MapRequest.srv
+)
+
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
 catkin_package()
 
 include_directories(
   include ${catkin_INCLUDE_DIRS} ${GAZEBO_MSG_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS}
 )
-
 add_library(gazebo_2Dmap_plugin SHARED src/gazebo_2Dmap_plugin.cpp)
 target_link_libraries(gazebo_2Dmap_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 

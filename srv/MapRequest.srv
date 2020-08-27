@@ -1,0 +1,9 @@
+float64 map_height
+float64 map_resolution
+float64 map_size_x
+float64 map_size_y
+float64 init_robot_x
+float64 init_robot_y
+---
+bool status
+string response_message
